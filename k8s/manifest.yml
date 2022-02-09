@@ -1,0 +1,64 @@
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: treeweb
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: treeweb
+  namespace: treeweb
+spec:
+  selector:
+    matchLabels:
+      app: treeweb
+      version: v1
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: treeweb
+        version: v1
+    spec:
+      containers:
+      - name: treewebserver
+        image: "treewebpython:1.2"
+        resources:
+          limits:
+            cpu: 1
+            memory: 512Mi
+          requests:
+            cpu: 500m
+            memory: 256Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: treewebservice
+  namespace: treeweb
+spec:
+  selector:
+    app: treeweb
+    version: v1
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 5000
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: treeweb-ingress
+  namespace: treeweb
+spec:
+  rules:
+  - host: "local.treewebcustom.org"
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/tree"
+        backend:
+          service:
+            name: treewebservice
+            port:
+              number: 80
