@@ -52,7 +52,7 @@ metadata:
   namespace: treeweb
 spec:
   rules:
-  - host: "local.treewebcustom.org"
+  - host: "local.ecosia.org"
     http:
       paths:
       - pathType: Prefix

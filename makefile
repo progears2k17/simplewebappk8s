@@ -29,7 +29,7 @@ _build-if-not-exists: ## Builds docker image if not exists
 deploy: _build-if-not-exists ## Deploys on minikube
 	minikube image load $(IMAGE_NAME):$(VERSION)
 	kubectl apply -f k8s/manifest.yml
-	bash -c 'while [[ "$$(curl -s -o /dev/null -w ''%{http_code}'' local.treewebcustom.org/tree)" != "200" ]]; do sleep 5; done'
+	bash -c 'while [[ "$$(curl -s -o /dev/null -w ''%{http_code}'' local.ecosia.org/tree)" != "200" ]]; do sleep 5; done'
 	echo "Done"
 
 
