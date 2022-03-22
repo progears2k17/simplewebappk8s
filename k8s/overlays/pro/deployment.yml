@@ -7,8 +7,3 @@ spec:
     spec:
       containers:
         image: cloud-deploy
----
-apiVersion: v1
-kind: Service
-metadata:
-  namespace: pro
