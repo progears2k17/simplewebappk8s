@@ -1,16 +1,16 @@
 apiVersion: skaffold/v2beta16
 kind: Config
-metadata:
-  name: cloud-deploy
-build:
-# Uncomment if you're using minikube for local dev and don't want to push to Artifact Registry
-#  local: 
-#    push: false
-  artifacts:
-  - image: cloud-deploy
-    context: app
-    docker:
-      dockerfile: Dockerfile
+# metadata:
+#   name: cloud-deploy
+# build:
+# # Uncomment if you're using minikube for local dev and don't want to push to Artifact Registry
+# #  local: 
+# #    push: false
+#   artifacts:
+#   - image: cloud-deploy
+#     context: app
+#     docker:
+#       dockerfile: Dockerfile
 deploy:
   kustomize:
     paths: 
