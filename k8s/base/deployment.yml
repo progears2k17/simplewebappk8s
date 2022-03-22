@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: treewebserver
-        image: "treewebpython:1.2"
+        image: cloud-deploy
         resources:
           limits:
             cpu: 1
