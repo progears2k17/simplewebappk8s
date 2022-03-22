@@ -1,10 +1,10 @@
 steps:
   # Build and tag using commit sha
   - name: "gcr.io/kaniko-project/executor"
-    args: ["--context","/workspace","--destination","europe-west1-docker.pkg.dev/$PROJECT_ID/clouddeploy:$COMMIT_SHA","--destination","europe-west1-docker.pkg.dev/$PROJECT_ID/clouddeploy:latest" ,"--dockerfile","/workspace/Dockerfile", "--cache"]
+    args: ["--context","/workspace","--destination","europe-west1-docker.pkg.dev/$PROJECT_ID/clouddeploy/flaskapp:$COMMIT_SHA","--destination","europe-west1-docker.pkg.dev/$PROJECT_ID/clouddeploy/flaskapp:latest" ,"--dockerfile","/workspace/Dockerfile", "--cache"]
 
   # Run api tests
-  - name: 'europe-west1-docker.pkg.dev/$PROJECT_ID/clouddeploy:${COMMIT_SHA}'
+  - name: 'europe-west1-docker.pkg.dev/$PROJECT_ID/clouddeploy/flaskapp:${COMMIT_SHA}'
     entrypoint: python
     args: ["-m", "unittest"]
 
@@ -17,5 +17,5 @@ steps:
         "--delivery-pipeline", "cloud-delivery-pipeline",
         "--region", "europe-west1",
         "--annotations", "commitId=${REVISION_ID}",
-        "--images", "cloud-deploy=europe-west1-docker.pkg.dev/$PROJECT_ID/clouddeploy:$COMMIT_SHA"
+        "--images", "cloud-deploy=europe-west1-docker.pkg.dev/$PROJECT_ID/clouddeploy/flaskapp:$COMMIT_SHA"
       ]
