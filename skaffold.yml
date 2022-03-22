@@ -13,6 +13,7 @@ kind: Config
 #       dockerfile: Dockerfile
 deploy:
   kustomize:
+    defaultNamespace: dev
     paths: 
       - k8s/overlays/dev
 # portForward:
@@ -24,10 +25,12 @@ profiles:
   - name: pre
     deploy:
       kustomize:
+        defaultNamespace: pre
         paths: 
           - k8s/overlays/pre
   - name: pro
     deploy:
       kustomize:
+        defaultNamespace: pro
         paths: 
           - k8s/overlays/pro
