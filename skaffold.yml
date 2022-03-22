@@ -15,11 +15,11 @@ deploy:
   kustomize:
     paths: 
       - k8s/overlays/dev
-portForward:
-- resourceType: deployment
-  resourceName: cloud-deploy
-  port: 5000
-  localPort: 8080
+# portForward:
+# - resourceType: deployment
+#   resourceName: cloud-deploy
+#   port: 5000
+#   localPort: 8080
 profiles:
   - name: pre
     deploy:
