@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: pro
+spec:
+  template:
+    spec:
+      containers:
+        image: cloud-deploy
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: pro
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  namespace: pro

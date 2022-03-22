@@ -1,0 +1,21 @@
+steps:
+  # Build and tag using commit sha
+  - name: "gcr.io/kaniko-project/executor"
+    args: ["--context","/workspace","--destination","europe-west1-docker.pkg.dev/$PROJECT_ID/clouddeploy:$COMMIT_SHA","--destination","europe-west1-docker.pkg.dev/$PROJECT_ID/clouddeploy:latest" ,"--dockerfile","/workspace/Dockerfile", "--cache"]
+
+  # Run api tests
+  - name: 'europe-west1-docker.pkg.dev/$PROJECT_ID/clouddeploy:${COMMIT_SHA}'
+    entrypoint: python
+    args: ["-m", "unittest"]
+
+  # Create release in Google Cloud Deploy
+  - name: gcr.io/google.com/cloudsdktool/cloud-sdk
+    entrypoint: gcloud
+    args: 
+      [
+        "deploy", "releases", "create", "rel-${SHORT_SHA}",
+        "--delivery-pipeline", "cloud-delivery-pipeline",
+        "--region", "europe-west1",
+        "--annotations", "commitId=${REVISION_ID}",
+        "--images", "cloud-deploy=europe-west1-docker.pkg.dev/$PROJECT_ID/clouddeploy:$COMMIT_SHA"
+      ]
