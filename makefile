@@ -26,11 +26,35 @@ _build-if-not-exists: ## Builds docker image if not exists
 		make --no-print-directory build; \
 	fi
 
-deploy: _build-if-not-exists ## Deploys on minikube
+deploy:  ## Deploys on minikube
+	python3 -m unittest
+	make build
 	minikube image load $(IMAGE_NAME):$(VERSION)
 	kubectl apply -f k8s/manifest.yml
 	bash -c 'while [[ "$$(curl -s -o /dev/null -w ''%{http_code}'' local.ecosia.org/tree)" != "200" ]]; do sleep 5; done'
 	echo "Done"
+
+k8s-deploy:
+	kubectl apply -f k8s/manifest.yml
+
+check-if-works:
+	bash -c 'while [[ "$$(curl -s -o /dev/null -w ''%{http_code}'' local.ecosia.org/tree)" != "200" ]]; do sleep 5; done'
+	echo "Done"
+
+load-image:
+	minikube image load $(IMAGE_NAME):$(VERSION)
+	
+local-test:
+	python3 -m unittest
+
+all:
+	make local-test
+	make build
+	make load-image
+	make k8s-deploy
+	make check-if-works
+	
+
 
 
 
