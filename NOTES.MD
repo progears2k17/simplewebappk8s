@@ -18,4 +18,4 @@
 - CD pipeline
     - spinnaker
 - Monitoring
-- roll back procesure  
+- roll back procesure
