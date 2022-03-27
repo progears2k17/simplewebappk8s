@@ -2,25 +2,11 @@ apiVersion: skaffold/v2beta16
 kind: Config
 metadata:
   name: cloud-deploy
-build:
-# Uncomment if you're using minikube for local dev and don't want to push to Artifact Registry
-#  local: 
-#    push: false
-  artifacts:
-  - image: cloud-deploy
-    context: app
-    docker:
-      dockerfile: Dockerfile
 deploy:
   kustomize:
     defaultNamespace: dev
     paths: 
       - k8s/overlays/dev
-# portForward:
-# - resourceType: deployment
-#   resourceName: cloud-deploy
-#   port: 5000
-#   localPort: 8080
 profiles:
   - name: pre
     deploy:
