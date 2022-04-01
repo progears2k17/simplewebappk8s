@@ -4,19 +4,19 @@ metadata:
   name: cloud-deploy
 deploy:
   kustomize:
-    defaultNamespace: dev2
+    defaultNamespace: dev
     paths: 
       - k8s/overlays/dev
 profiles:
   - name: pre
     deploy:
       kustomize:
-        defaultNamespace: pre2
+        defaultNamespace: pre
         paths: 
           - k8s/overlays/pre
   - name: pro
     deploy:
       kustomize:
-        defaultNamespace: pro2
+        defaultNamespace: pro
         paths: 
           - k8s/overlays/pro
