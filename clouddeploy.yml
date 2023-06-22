@@ -20,7 +20,7 @@ metadata:
   name: dev
 description: dev cluster
 gke:
-  cluster: projects/emergya-digital-cloud-lab/locations/europe-west1-d/clusters/cloud-deploy
+  cluster: projects/csmd-practises/locations/europe-west1/clusters/cloud-deploy
 ---
 
 apiVersion: deploy.cloud.google.com/v1
@@ -29,7 +29,7 @@ metadata:
   name: pre
 description: pre cluster
 gke:
-  cluster: projects/emergya-digital-cloud-lab/locations/europe-west1-d/clusters/cloud-deploy
+  cluster: projects/csmd-practises/locations/europe-west1/clusters/cloud-deploy
 ---
 
 apiVersion: deploy.cloud.google.com/v1
@@ -39,4 +39,4 @@ metadata:
 description: pro cluster
 requireApproval: true
 gke:
-  cluster: projects/emergya-digital-cloud-lab/locations/europe-west1-d/clusters/cloud-deploy
+  cluster: projects/csmd-practises/locations/europe-west1/clusters/cloud-deploy
