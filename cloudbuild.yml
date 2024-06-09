@@ -36,7 +36,7 @@ steps:
     entrypoint: gcloud
     args: 
       [
-        "beta", "deploy", "pipelines", "create", "sre",
+        "beta", "deploy", "delivery-pipelines", "create", "sre",
         "--target", "europe-west1-docker.pkg.dev/$PROJECT_ID/clouddeploy/flaskapp:$COMMIT_SHA",
         "--region", "europe-west1"
       ]
