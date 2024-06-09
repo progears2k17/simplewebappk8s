@@ -52,3 +52,5 @@ steps:
         "--annotations", "commitId=${REVISION_ID}",
         "--images", "cloud-deploy=europe-west1-docker.pkg.dev/$PROJECT_ID/clouddeploy/flaskapp:$COMMIT_SHA"
       ]
+options:
+  logging: CLOUD_LOGGING_ONLY
