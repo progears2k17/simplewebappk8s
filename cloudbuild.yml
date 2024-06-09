@@ -36,7 +36,7 @@ steps:
     entrypoint: gcloud
     args: 
       [
-        "beta", "deploy", "apply"
+        "beta", "deploy", "apply",
         "--file", "clouddeploy.yml",
         "--region", "europe-west1"
       ]
