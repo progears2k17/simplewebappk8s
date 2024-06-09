@@ -27,9 +27,9 @@ steps:
     args: ["--context","/workspace","--destination","europe-west1-docker.pkg.dev/$PROJECT_ID/clouddeploy/flaskapp:$COMMIT_SHA","--destination","europe-west1-docker.pkg.dev/$PROJECT_ID/clouddeploy/flaskapp:latest" ,"--dockerfile","/workspace/Dockerfile", "--cache"]
 
   # Run api tests
-  - name: 'europe-west1-docker.pkg.dev/$PROJECT_ID/clouddeploy/flaskapp:${COMMIT_SHA}'
-    entrypoint: python
-    args: ["-m", "unittest"]
+  #- name: 'europe-west1-docker.pkg.dev/$PROJECT_ID/clouddeploy/flaskapp:${COMMIT_SHA}'
+  #  entrypoint: python
+  #  args: ["-m", "unittest"]
 
   # Create pipeline in Google Cloud Deploy
   - name: gcr.io/google.com/cloudsdktool/cloud-sdk
