@@ -24,18 +24,7 @@ logsBucket: ""
 steps:
   # Build and tag using commit sha
   - name: "gcr.io/kaniko-project/executor"
-    args: 
-    [
-      "--context",
-      "/workspace",
-      "--destination",
-      "europe-west1-docker.pkg.dev/$PROJECT_ID/clouddeploy/flaskapp:$COMMIT_SHA",
-      "--destination",
-      "europe-west1-docker.pkg.dev/$PROJECT_ID/clouddeploy/flaskapp:latest" ,
-      "--dockerfile",
-      "/workspace/Dockerfile", 
-      "--cache"
-    ]
+    args: ["--context","/workspace","--destination","europe-west1-docker.pkg.dev/$PROJECT_ID/clouddeploy/flaskapp:$COMMIT_SHA","--destination","europe-west1-docker.pkg.dev/$PROJECT_ID/clouddeploy/flaskapp:latest" ,"--dockerfile","/workspace/Dockerfile", "--cache"]
 
   # Run api tests
   #- name: 'europe-west1-docker.pkg.dev/$PROJECT_ID/clouddeploy/flaskapp:${COMMIT_SHA}'
